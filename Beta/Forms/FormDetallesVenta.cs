@@ -13,15 +13,15 @@ namespace Beta
 {
     public partial class FormDetallesVenta : Form
     {
-        private CN_Ventas ventas;
+        private CoreVentas ventas;
 
-        public FormDetallesVenta(CN_Ventas Ventas)
+        public FormDetallesVenta(CoreVentas Ventas)
         {
             this.ventas = Ventas;
             InitializeComponent();
         }
 
-        CN_VentasItem VentasItem = new CN_VentasItem();
+        CoreVentasItem VentasItem = new CoreVentasItem();
 
         public int ID { get; set; }
 

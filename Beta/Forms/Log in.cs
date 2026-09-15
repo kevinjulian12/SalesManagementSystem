@@ -1,4 +1,5 @@
-﻿using Common.Cache;
+﻿using Beta.Domain.Core;
+using Beta.Aplicacion.DTO;
 using Domain;
 using System;
 using System.Drawing;
@@ -27,8 +28,8 @@ namespace Beta
             {
                 if (encryptHelper.Sha256Encrypt(txtPassword.Texts) != "Password")
                 {
-                    CN_Usuario user = new CN_Usuario();
-                    var validLogin = user.LoginUser(txtUsername.Texts, txtPassword.Texts);
+                    Beta.Domain.Core.CoreUsuario user = new CoreUsuario();
+                    var validLogin = user.Login(txtUsername.Texts, txtPassword.Texts);
                     if (validLogin == true)
                     {
                         Formulario mainMenu = new Formulario();

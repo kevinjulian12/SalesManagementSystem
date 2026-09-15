@@ -45,7 +45,7 @@ namespace Beta
 
         public void MostrarProductos()
         {
-            CN_Productos objeto = new CN_Productos();
+            CoreProductos objeto = new CoreProductos();
             dataGridView1.DataSource = objeto.MostrarProductos();
             dataGridView1.Columns.GetFirstColumn(0).Visible = false;
         }

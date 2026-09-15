@@ -1,188 +1,242 @@
-IF NOT EXISTS(SELECT OBJECT_ID='BETA')
-CREATE DATABASE BETA
+
+IF NOT EXISTS (SELECT * FROM sys.databases WHERE name = 'BETA')
+    CREATE DATABASE BETA;
 GO
-USE BETA 
+USE BETA;
 GO
-IF NOT EXISTS(SELECT OBJECT_ID='Users')
-create table Users(
-UserID int identity(1,1) primary key,
-LoginName nvarchar (100) unique not null,
-Password nvarchar (100) not null,
-FirstName nvarchar(100) not null,
-LastName nvarchar(100) not null,
-Position nvarchar (100) null,
-Email nvarchar(150)not null,
-DateoOfBirth date NULL,
-GENDER varchar(1) NULL,
-)
-go
---insert into Users values ('admin','admin','Jackson','Collins','Administrator','Support@SystemAll.biz')
---insert into Users values ('Ben','abc123456','Benjamin','Thompson','Receptionist','BenThompson@MyCompany.com')                                                         
---insert into Users values ('Kevin','ABC123','Kevin','Gaitano','Accounting','kevinjuliangaitano@gmail.com' )
---go
+IF NOT EXISTS (SELECT * FROM sys.tables WHERE name = 'users')
+    CREATE TABLE Users
+    (
+        UserID INT IDENTITY(1, 1) PRIMARY KEY,
+        LoginName NVARCHAR(100)
+            UNIQUE NOT NULL,
+        Password NVARCHAR(100) NOT NULL,
+        FirstName NVARCHAR(100) NOT NULL,
+        LastName NVARCHAR(100) NOT NULL,
+        Position NVARCHAR(100) NULL,
+        Email NVARCHAR(150) NOT NULL,
+        DateoOfBirth DATE NULL,
+        GENDER VARCHAR(1) NULL,
+    );
+GO
 
-IF NOT EXISTS(SELECT OBJECT_ID='Clientes')
-create table Clientes
-(
-ID int identity (1,1) primary key,
-Nombre varchar (100),
-Apellido varchar (100),
-Direccion varchar (100),
-Telefono float,
-Localidad varchar (100),
-)
-go
+IF NOT EXISTS (SELECT * FROM sys.tables WHERE name = 'Clientes')
+    CREATE TABLE Clientes
+    (
+        ID INT IDENTITY(1, 1) PRIMARY KEY,
+        Nombre VARCHAR(100),
+        Apellido VARCHAR(100),
+        Direccion VARCHAR(100),
+        Telefono FLOAT,
+        Localidad VARCHAR(100),
+    );
+GO
 
-create or alter procedure MostrarClientes
-as
-select *from Clientes
-go
-IF NOT EXISTS(SELECT OBJECT_ID='Productos')
-create table Productos 
-(
-Id int identity (1,1) primary key,
-Producto nvarchar (100),
-Descripcion nvarchar (100),
-Marca nvarchar (100),
-Costo float,
-Precio float,
-Stock int
-)
-go
+IF NOT EXISTS (SELECT * FROM sys.tables WHERE name = 'Productos')
+    CREATE TABLE Productos
+    (
+        Id INT IDENTITY(1, 1) PRIMARY KEY,
+        Producto NVARCHAR(100),
+        Descripcion NVARCHAR(100),
+        Marca NVARCHAR(100),
+        Costo FLOAT,
+        Precio FLOAT,
+        Stock INT
+    );
+GO
 
---insert into Productos values ('Gaseosa','3 litros','marcacola',0,7.5,24),('Chocolate','Tableta 100 gramos','iberica',0,12.5,36)
+IF NOT EXISTS (SELECT * FROM sys.tables WHERE name = 'ventas')
+    CREATE TABLE [dbo].[ventas]
+    (
+        [ID] [INT] IDENTITY(1, 1) NOT NULL,
+        [IDCliente] [INT] NOT NULL,
+        [Fecha] [DATETIME] NULL,
+        [Total] [FLOAT] NULL,
+        PRIMARY KEY CLUSTERED ([ID] ASC)
+        WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON,
+              ALLOW_PAGE_LOCKS = ON
+             ) ON [PRIMARY]
+    ) ON [PRIMARY];
+GO
+IF NOT EXISTS (SELECT * FROM sys.tables WHERE name = 'ventasitems')
+    CREATE TABLE [dbo].[ventasitems]
+    (
+        [ID] [INT] IDENTITY(1, 1) NOT NULL,
+        [IDVenta] [INT] NOT NULL,
+        [IDProducto] [INT] NOT NULL,
+        [PrecioUnitario] [FLOAT] NULL,
+        [Cantidad] [FLOAT] NULL,
+        [PrecioTotal] [FLOAT] NULL,
+        PRIMARY KEY CLUSTERED ([ID] ASC)
+        WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON,
+              ALLOW_PAGE_LOCKS = ON
+             ) ON [PRIMARY]
+    ) ON [PRIMARY];
+GO
+
+IF NOT EXISTS (SELECT * FROM sys.tables WHERE name = 'Compras')
+    CREATE TABLE [dbo].[Compras]
+    (
+        [ID] [INT] IDENTITY(1, 1) NOT NULL,
+        [IDProveedor] [INT] NOT NULL,
+        [Fecha] [DATETIME] NULL,
+        [Total] [FLOAT] NULL,
+        PRIMARY KEY CLUSTERED ([ID] ASC)
+        WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON,
+              ALLOW_PAGE_LOCKS = ON
+             ) ON [PRIMARY]
+    ) ON [PRIMARY];
+GO
+
+IF NOT EXISTS (SELECT * FROM sys.tables WHERE name = 'comprasitems')
+    CREATE TABLE [dbo].[comprasitems]
+    (
+        [ID] [INT] IDENTITY(1, 1) NOT NULL,
+        [IDCompra] [INT] NOT NULL,
+        [IDProducto] [INT] NOT NULL,
+        [PrecioCompra] [FLOAT] NULL,
+        [PrecioVenta] [FLOAT] NULL,
+        [Cantidad] [FLOAT] NULL,
+        [SubTotal] [FLOAT] NULL,
+        PRIMARY KEY CLUSTERED ([ID] ASC)
+        WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON,
+              ALLOW_PAGE_LOCKS = ON
+             ) ON [PRIMARY]
+    ) ON [PRIMARY];
+GO
+
+IF NOT EXISTS (SELECT * FROM sys.tables WHERE name = 'Proveedor')
+    CREATE TABLE Proveedor
+    (
+        Id INT IDENTITY(1, 1) PRIMARY KEY,
+        Nombre NVARCHAR(100),
+        Razon_Social NVARCHAR(100),
+        Direccion NVARCHAR(100),
+        Telefono INT,
+        Referencia NVARCHAR(100),
+        Email NVARCHAR(100)
+    );
+GO
 ---PROCEDIMIENTOS ALMACENADOS 
 --------------------------MOSTRAR
-go
+CREATE OR ALTER PROCEDURE MostrarProveedor
+AS
+BEGIN
+    SELECT *
+    FROM Proveedor;
+END;
+GO
 
-create or alter procedure MostrarProductos
-as
-select *from Productos
-go
+CREATE OR ALTER PROCEDURE MostrarClientes
+AS
+BEGIN
+    SELECT *
+    FROM Clientes;
+END;
+GO
+
+CREATE OR ALTER PROCEDURE MostrarProductos
+AS
+BEGIN
+    SELECT *
+    FROM Productos;
+END;
+GO
 --------------------------INSERTAR 
-create or alter procedure InsetarProductos
-@nombre nvarchar (100),
-@descrip nvarchar (100),
-@marca nvarchar (100),
-@costo float,
-@precio float,
-@stock int
-as
-insert into Productos values (@nombre,@descrip,@marca,@costo,@precio,@stock)
-go
+CREATE OR ALTER PROCEDURE InsetarProductos
+    @nombre NVARCHAR(100),
+    @descrip NVARCHAR(100),
+    @marca NVARCHAR(100),
+    @costo FLOAT,
+    @precio FLOAT,
+    @stock INT
+AS
+BEGIN
+    INSERT INTO Productos
+    VALUES
+    (@nombre, @descrip, @marca, @costo, @precio, @stock);
+END;
+GO
+
+CREATE OR ALTER PROCEDURE InsertaCompra
+    @idpro INT,
+    @fecha DATE,
+    @total FLOAT
+AS
+BEGIN
+    INSERT INTO Compras
+    VALUES
+    (@idpro, @fecha, @total);
+    SELECT SCOPE_IDENTITY();
+END;
+GO
+
 ------------------------ELIMINAR
-create or alter procedure EliminarProducto
-@idpro int
-as
-delete from Productos where Id=@idpro
-go
+CREATE OR ALTER PROCEDURE EliminarProducto @idpro INT
+AS
+BEGIN
+    DELETE FROM Productos
+    WHERE Id = @idpro;
+END;
+GO
 ------------------EDITAR
-create or alter procedure EditarProductos
-@nombre nvarchar (100),
-@descrip nvarchar (100),
-@marca nvarchar (100),
-@costo float,
-@precio float,
-@stock int,
-@id int
-as
-update Productos set Producto=@nombre, Descripcion=@descrip, Marca=@marca,Costo=@costo, Precio=@precio, Stock=@stock where Id=@id
-go
-IF NOT EXISTS(SELECT OBJECT_ID='Provedor')
-create table Proveedor 
-(
-Id int identity (1,1) primary key,
-Nombre nvarchar (100),
-Razon_Social nvarchar (100),
-Direccion nvarchar (100),
-Telefono int,
-Referencia nvarchar (100),
-Email nvarchar (100)
-)
-go
-create or alter procedure MostrarProveedor
-as
-select *from Proveedor
-go
-IF NOT EXISTS(SELECT OBJECT_ID='Ventas')
-CREATE TABLE [dbo].[ventas](
-	[ID] [int] IDENTITY(1,1) NOT NULL,
-	[IDCliente] [int] NOT NULL,
-	[Fecha] [datetime] NULL,
-	[Total] [float] NULL,
-PRIMARY KEY CLUSTERED 
-(
-	[ID] ASC
-)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
-) ON [PRIMARY]
-GO
-IF NOT EXISTS(SELECT OBJECT_ID='ventasitems')
-CREATE TABLE [dbo].[ventasitems](
-	[ID] [int] IDENTITY(1,1) NOT NULL,
-	[IDVenta] [int] NOT NULL,
-	[IDProducto] [int] NOT NULL,
-	[PrecioUnitario] [float] NULL,
-	[Cantidad] [float] NULL,
-	[PrecioTotal] [float] NULL,
-PRIMARY KEY CLUSTERED 
-(
-	[ID] ASC
-)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
-) ON [PRIMARY]
+CREATE OR ALTER PROCEDURE EditarProductos
+    @nombre NVARCHAR(100),
+    @descrip NVARCHAR(100),
+    @marca NVARCHAR(100),
+    @costo FLOAT,
+    @precio FLOAT,
+    @stock INT,
+    @id INT
+AS
+BEGIN
+    UPDATE Productos
+    SET Producto = @nombre,
+        Descripcion = @descrip,
+        Marca = @marca,
+        Costo = @costo,
+        Precio = @precio,
+        Stock = @stock
+    WHERE Id = @id;
+END;
 GO
 
-IF NOT EXISTS(SELECT OBJECT_ID='Compras')
-CREATE TABLE [dbo].[Compras](
-	[ID] [int] IDENTITY(1,1) NOT NULL,
-	[IDProveedor] [int] NOT NULL,
-	[Fecha] [datetime] NULL,
-	[Total] [float] NULL,
-PRIMARY KEY CLUSTERED 
-(
-	[ID] ASC
-)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
-) ON [PRIMARY]
+CREATE OR ALTER PROCEDURE RestarStock
+    @stock INT,
+    @id INT
+AS
+BEGIN
+    UPDATE Productos
+    SET Stock = Stock - @stock
+    WHERE Id = @id;
+END;
 GO
-IF NOT EXISTS(SELECT OBJECT_ID='comprasitems')
-CREATE TABLE [dbo].[comprasitems](
-	[ID] [int] IDENTITY(1,1) NOT NULL,
-	[IDCompra] [int] NOT NULL,
-	[IDProducto] [int] NOT NULL,
-	[PrecioCompra] [float] NULL,
-	[PrecioVenta] [float] NULL,
-	[Cantidad] [float] NULL,
-	[SubTotal] [float] NULL,
-PRIMARY KEY CLUSTERED 
-(
-	[ID] ASC
-)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
-) ON [PRIMARY]
-GO
-create or alter procedure RestarStock
-@stock int,
-@id int
-as
-Update Productos set Stock=Stock-@stock where Id=@id
-go
---select Nombre,Marca,Descripcion,PrecioUnitario,Cantidad,SubTotal from ventasitems join productos on IDProducto=productos.ID where IDVenta=1
---
---
---
---select *from ventasitems
---join productos on IDProducto=productos.ID
---join ventas on IDVenta = ventas.ID
---join Clientes on IDCliente = Clientes.ID 
--- where Producto='gaseosa' 
---
--- select ve.ID,COUNT(*) as CantidadID,avg(ventasitems.SubTotal) as promedio from ventas ve
--- join ventasitems on ve.ID=ventasitems.IDVenta
--- join Clientes on ve.IDCliente=Clientes.ID
--- where ventasitems.IDProducto=1 AND ventasitems.IDProducto=2
--- group by ve.ID
--- 
--- 
--- select* from ventas ve
--- join ventasitems on ve.ID=ventasitems.IDVenta
---
 
- Select* from Productos
+----------------VISTAS
+CREATE OR ALTER VIEW [dbo].[MostrarDetalleDeVenta]
+AS
+SELECT IDVenta,
+       Producto,
+       Marca,
+       Descripcion,
+       PrecioUnitario,
+       Cantidad,
+       PrecioTotal
+FROM ventasitems
+    JOIN Productos
+        ON IDProducto = Productos.Id;
+GO
+-------------TRIGGERS
+CREATE OR ALTER TRIGGER [dbo].[UsersPosicion]
+ON [dbo].[Users]
+AFTER INSERT
+AS
+UPDATE Users
+SET Position = 'Usuario'
+WHERE UserID IN
+      (
+          SELECT UserID FROM inserted WHERE Position = NULL
+      );
+GO
+
+

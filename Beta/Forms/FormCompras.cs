@@ -20,9 +20,9 @@ namespace Beta
          
         }
 
-        CN_Productos Productos = new CN_Productos();
-        CN_Compras compras = new CN_Compras();
-        CN_ComprasItem comprasItem = new CN_ComprasItem();
+      //  CN_Productos Productos = new CN_Productos();
+      //  CN_Compras compras = new CN_Compras();
+      //  CN_ComprasItem comprasItem = new CN_ComprasItem();
 
         public string idProveedor;
         public string idProducto;
@@ -169,31 +169,31 @@ namespace Beta
                 {
                     DateTime hora = DateTime.Today;
                     float total = Convert.ToSingle(labelTotal.Text);
-                    var idCompra = compras.InsertarCompra(Convert.ToInt32(idProveedor), hora, total);
+                 //   var idCompra = compras.InsertarCompra(Convert.ToInt32(idProveedor), hora, total);
                     foreach (DataGridViewRow row in dataGridView1.Rows)
                     {
-                        if (row.Cells[0].Value != null)
-                        {
-                            comprasItem.InsertarItems(Convert.ToInt32(idCompra),
-                                                  Convert.ToInt32(row.Cells[0].Value),
-                                                  Convert.ToSingle(row.Cells[4].Value),
-                                                  Convert.ToSingle(row.Cells[5].Value),
-                                                  Convert.ToInt32(row.Cells[6].Value),
-                                                  Convert.ToSingle(row.Cells[7].Value));
-                            Productos.EditarProducto(Convert.ToString(row.Cells[1].Value), Convert.ToString(row.Cells[2].Value), Convert.ToString(row.Cells[3].Value), Convert.ToString(row.Cells[4].Value), Convert.ToString(row.Cells[5].Value), Convert.ToString(row.Cells[8].Value), Convert.ToString(row.Cells[0].Value));
-                        }
-                        else
-                        {
-                            var _idProducto = Productos.InsertarProductosEnCompras(Convert.ToString(row.Cells[1].Value), Convert.ToString(row.Cells[2].Value), Convert.ToString(row.Cells[3].Value), Convert.ToString(row.Cells[4].Value), Convert.ToString(row.Cells[5].Value), Convert.ToString(row.Cells[6].Value));
-
-                            comprasItem.InsertarItems(Convert.ToInt32(idCompra),
-                                                Convert.ToInt32(_idProducto),
-                                                Convert.ToSingle(row.Cells[4].Value),
-                                                Convert.ToSingle(row.Cells[5].Value),
-                                                Convert.ToInt32(row.Cells[6].Value),
-                                                Convert.ToSingle(row.Cells[7].Value));
-
-                        }
+                    //    if (row.Cells[0].Value != null)
+                    //    {
+                    //        comprasItem.InsertarItems(Convert.ToInt32(idCompra),
+                    //                              Convert.ToInt32(row.Cells[0].Value),
+                    //                              Convert.ToSingle(row.Cells[4].Value),
+                    //                              Convert.ToSingle(row.Cells[5].Value),
+                    //                              Convert.ToInt32(row.Cells[6].Value),
+                    //                              Convert.ToSingle(row.Cells[7].Value));
+                    //        Productos.EditarProducto(Convert.ToString(row.Cells[1].Value), Convert.ToString(row.Cells[2].Value), Convert.ToString(row.Cells[3].Value), Convert.ToString(row.Cells[4].Value), Convert.ToString(row.Cells[5].Value), Convert.ToString(row.Cells[8].Value), Convert.ToString(row.Cells[0].Value));
+                    //    }
+                    //    else
+                    //    {
+                    //        var _idProducto = Productos.InsertarProductosEnCompras(Convert.ToString(row.Cells[1].Value), Convert.ToString(row.Cells[2].Value), Convert.ToString(row.Cells[3].Value), Convert.ToString(row.Cells[4].Value), Convert.ToString(row.Cells[5].Value), Convert.ToString(row.Cells[6].Value));
+                    //
+                    //        comprasItem.InsertarItems(Convert.ToInt32(idCompra),
+                    //                            Convert.ToInt32(_idProducto),
+                    //                            Convert.ToSingle(row.Cells[4].Value),
+                    //                            Convert.ToSingle(row.Cells[5].Value),
+                    //                            Convert.ToInt32(row.Cells[6].Value),
+                    //                            Convert.ToSingle(row.Cells[7].Value));
+                    //
+                    //    }
                     }
                     dataGridView1.DataSource = "";
                     limpiarFormProveedor();

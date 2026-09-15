@@ -17,7 +17,7 @@ namespace Beta
         {
             InitializeComponent();
         }
-        CN_ComprasItem ComprasItem = new CN_ComprasItem();
+        CoreComprasItem ComprasItem = new CoreComprasItem();
         
         public int ID;
         public void mostrar()

@@ -18,7 +18,7 @@ namespace Beta
             InitializeComponent();
         }
 
-        CN_Ventas ventas = new CN_Ventas();
+        CoreVentas ventas = new CoreVentas();
 
         private void FormEstadisticasVentas_Load(object sender, EventArgs e)
         {

@@ -13,9 +13,9 @@ namespace Beta
             dataGridView1.Columns[0].Visible = false;
         }
 
-        CN_Ventas ventas = new CN_Ventas();
-        CN_VentasItem ventasItem = new CN_VentasItem();
-        CN_Productos Productos = new CN_Productos();
+        CoreVentas ventas = new CoreVentas();
+        CoreVentasItem ventasItem = new CoreVentasItem();
+        CoreProductos Productos = new CoreProductos();
         public string IDcliente;
         public string iDproducto;
         private void txtCaracter_KeyPress(object sender, KeyPressEventArgs e)

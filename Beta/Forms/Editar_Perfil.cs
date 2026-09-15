@@ -1,4 +1,4 @@
-﻿using Common.Cache;
+﻿using Beta.Aplicacion.DTO;
 using Domain;
 using System;
 using System.Collections.Generic;
@@ -84,16 +84,16 @@ namespace Beta
                 {
                     if (txtCurrentPassword.Text == UsuarioDTO.Password)
                     {
-                        var userModel = new CN_Usuario(
-                            idUser: UsuarioDTO.IdUser,
-                            loginName: txtUsername.Text,
-                            password: txtPassword.Text,
-                            firstName: txtFirstName.Text,
-                            lastName: txtLastName.Text,
-                            position: null,
-                            email: txtEmail.Text);                                              
-                        var result = userModel.Editar_Usuario();
-                        MessageBox.Show(result);
+                    //    var userModel = new (
+                    //        idUser: UsuarioDTO.IdUser,
+                    //        loginName: txtUsername.Text,
+                    //        password: txtPassword.Text,
+                    //        firstName: txtFirstName.Text,
+                    //        lastName: txtLastName.Text,
+                    //        position: null,
+                    //        email: txtEmail.Text);                                              
+                    //    var result = userModel.Editar_Usuario();
+                    //    MessageBox.Show(result);
                         reset();                        
                         panel1.Visible = false;
                         Formulario f = Application.OpenForms.OfType<Formulario>().SingleOrDefault();

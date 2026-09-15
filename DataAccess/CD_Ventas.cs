@@ -10,6 +10,7 @@ namespace DataAccess
 {
     public class CD_Ventas
     {
+     
         private CD_Conexion conexion = new CD_Conexion();
         SqlDataReader leer;
         DataTable tabla = new DataTable();

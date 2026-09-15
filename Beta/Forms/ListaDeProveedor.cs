@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Beta.Domain.Core;
 using Domain;
 
 namespace Beta
@@ -20,8 +21,8 @@ namespace Beta
 
         public void MostrarProveedor()
         {
-            CN_Proveedor objeto = new CN_Proveedor();
-            dataGridView1.DataSource = objeto.MostrarProv();
+            CoreProveedor objeto = new CoreProveedor();
+            dataGridView1.DataSource = objeto.Read();
             dataGridView1.Columns.GetFirstColumn(0).Visible = false;
         }
 

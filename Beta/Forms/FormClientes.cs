@@ -2,6 +2,8 @@
 using System.Data;
 using System.Linq;
 using System.Windows.Forms;
+using Beta.Domain.Core;
+using Beta.Domain.Entity;
 using Domain;
 
 namespace Beta
@@ -9,7 +11,8 @@ namespace Beta
     public partial class FormClientes : Form
     {
         private bool Editar = false;
-        private CN_Clientes objetoCN = new CN_Clientes();
+        private EntityClientes entityClientes = new EntityClientes();
+        private CoreClientes CoreClientes = new CoreClientes();
 
         public FormClientes()
         {
@@ -23,15 +26,13 @@ namespace Beta
 
         public void FormListasClientes_Load(object sender, EventArgs e)
         {
-            // TODO: esta línea de código carga datos en la tabla 'bETADataSet.Clientes' Puede moverla o quitarla según sea necesario.
-            this.clientesTableAdapter.Fill(this.bETADataSet.Clientes);
             MostrarClientes();           
         }
 
         public void MostrarClientes()
         {
-            CN_Clientes objeto = new CN_Clientes();
-            dataGridView1.DataSource = objeto.MostrarClientes();
+            dataGridView1.DataSource = null;
+            dataGridView1.DataSource = CoreClientes.MostrarClientes();
             dataGridView1.Columns.GetFirstColumn(0).Visible = false;
         }
 
@@ -47,13 +48,12 @@ namespace Beta
                     }
                     else
                     {
-                        objetoCN.Nombre = txtnombre.Texts;
-                        objetoCN.Apellido = txtapellido.Texts;
-                        objetoCN.Direccion = txtdireccion.Texts;
-                        objetoCN.Localidad = txtLocalidad.Texts;
-                        objetoCN.Telefono = txttelefono.Texts;
-                        objetoCN.InsertarCliente();
-                        MessageBox.Show("se inserto correctamente");
+                        entityClientes.Nombre = txtnombre.Texts;
+                        entityClientes.Apellido = txtapellido.Texts;
+                        entityClientes.Direccion = txtdireccion.Texts;
+                        entityClientes.Localidad = txtLocalidad.Texts;
+                        entityClientes.Telefono = txttelefono.Texts;
+                        MessageBox.Show(CoreClientes.InsertarCliente(entityClientes));
                         MostrarClientes();
                         limpiarForm();
                         textBox1.Enabled = false;
@@ -77,13 +77,12 @@ namespace Beta
                     }
                     else
                     {
-                        objetoCN.Nombre = txtnombre.Texts;
-                        objetoCN.Apellido = txtapellido.Texts;
-                        objetoCN.Direccion = txtdireccion.Texts;
-                        objetoCN.Localidad = txtLocalidad.Texts;
-                        objetoCN.Telefono = txttelefono.Texts;
-                        objetoCN.EditarCliente();
-                        MessageBox.Show("se edito correctamente");
+                        entityClientes.Nombre = txtnombre.Texts;
+                        entityClientes.Apellido = txtapellido.Texts;
+                        entityClientes.Direccion = txtdireccion.Texts;
+                        entityClientes.Localidad = txtLocalidad.Texts;
+                        entityClientes.Telefono = txttelefono.Texts;
+                        MessageBox.Show(CoreClientes.EditarCliente(entityClientes));
                         MostrarClientes();
                         limpiarForm();
                         Editar = false;
@@ -130,7 +129,7 @@ namespace Beta
             if (dataGridView1.SelectedRows.Count > 0)
             {
                 Editar = true;
-                objetoCN.id = dataGridView1.CurrentRow.Cells[0].Value.ToString();
+                entityClientes.id = dataGridView1.CurrentRow.Cells[0].Value.ToString();
                 txtnombre.Texts = dataGridView1.CurrentRow.Cells[1].Value.ToString();
                 txtapellido.Texts = dataGridView1.CurrentRow.Cells[2].Value.ToString();
                 txtdireccion.Texts = dataGridView1.CurrentRow.Cells[3].Value.ToString();
@@ -160,9 +159,7 @@ namespace Beta
         {
             if (dataGridView1.SelectedRows.Count > 0)
             {
-                objetoCN.id = dataGridView1.CurrentRow.Cells["Id"].Value.ToString();
-                objetoCN.EliminarCliente();
-                MessageBox.Show("Eliminado correctamente");
+                MessageBox.Show(CoreClientes.EliminarCliente(Convert.ToInt32(dataGridView1.CurrentRow.Cells["Id"].Value)));
                 MostrarClientes();
                 btnEliminar.Enabled = false;
                 btnEditar.Enabled = false;
@@ -242,13 +239,13 @@ namespace Beta
             }
         }
 
-        private CN_Ventas ventas = new CN_Ventas();
+     //   private CN_Ventas ventas = new CN_Ventas();
         private void btnHistorial_Click(object sender, EventArgs e)
         {
-            RegistrosClientes historial = new RegistrosClientes(ventas);
-            ventas.IDCliente = Convert.ToString(dataGridView1.CurrentRow.Cells[0].Value); 
+         //   RegistrosClientes historial = new RegistrosClientes(ventas);
+       //     ventas.IDCliente = Convert.ToString(dataGridView1.CurrentRow.Cells[0].Value); 
             Formulario formulario = Application.OpenForms.OfType<Formulario>().SingleOrDefault();
-            formulario.openChildFormInPanel(historial);
+         //   formulario.openChildFormInPanel(historial);
         }
     }
 }

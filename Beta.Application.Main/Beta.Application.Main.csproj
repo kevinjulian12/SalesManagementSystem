@@ -1,0 +1,353 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{7955C691-2960-463F-B033-A4BDD780C386}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Beta.Application.Main</RootNamespace>
+    <AssemblyName>Beta.Application.Main</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Controles\Button.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controles\DropdownMenu.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controles\MenuColorTable.cs" />
+    <Compile Include="Controles\MenuRenderer.cs" />
+    <Compile Include="Controles\TextBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controles\TextBox.Designer.cs">
+      <DependentUpon>TextBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Editar_Perfil.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Editar_Perfil.Designer.cs">
+      <DependentUpon>Editar_Perfil.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormClientes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormClientes.Designer.cs">
+      <DependentUpon>FormClientes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormCompras.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormCompras.Designer.cs">
+      <DependentUpon>FormCompras.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormDetalleCompras.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormDetalleCompras.Designer.cs">
+      <DependentUpon>FormDetalleCompras.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormDetallesVenta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormDetallesVenta.Designer.cs">
+      <DependentUpon>FormDetallesVenta.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormProductos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormProductos.Designer.cs">
+      <DependentUpon>FormProductos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormProveedores.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormProveedores.Designer.cs">
+      <DependentUpon>FormProveedores.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormReporteVentas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormReporteVentas.Designer.cs">
+      <DependentUpon>FormReporteVentas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Formulario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Formulario.Designer.cs">
+      <DependentUpon>Formulario.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormVentas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormVentas.Designer.cs">
+      <DependentUpon>FormVentas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\HistorialProveedor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\HistorialProveedor.Designer.cs">
+      <DependentUpon>HistorialProveedor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ListaDeClientes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ListaDeClientes.Designer.cs">
+      <DependentUpon>ListaDeClientes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ListaDeProductos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ListaDeProductos.Designer.cs">
+      <DependentUpon>ListaDeProductos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ListaDeProveedor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ListaDeProveedor.Designer.cs">
+      <DependentUpon>ListaDeProveedor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ListaProductosCompra.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ListaProductosCompra.Designer.cs">
+      <DependentUpon>ListaProductosCompra.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Log in.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Log in.Designer.cs">
+      <DependentUpon>Log in.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Pagos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Pagos.Designer.cs">
+      <DependentUpon>Pagos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\RegistrosClientes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\RegistrosClientes.Designer.cs">
+      <DependentUpon>RegistrosClientes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bar-chart.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bell-ring-solid-24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\chevron-down-regular-24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Close_Icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cloud-icon-data-icon-icloud-icon-keep-icon-online-icon-store-icon-upload-icon-symbol-number-logo-png-clip-art.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cloud_14412.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cloud_icon-icons.com_52471.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\database_icon-icons.com_70204.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\exit-fullscreen-regular-24 %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\exit-fullscreen-regular-24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\fullscreen-regular-24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\fullscreen-regular-blanco.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon maximizar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon restaurar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icono-cliente.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-invertir-colores-96.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-lista-de-verificación-100.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\klipartz.com %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\klipartz.com.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\log-out-regular-24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\login-bg.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\maxi.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\menu.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\menu2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Minimize_Icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\minus-regular-24 %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\minus-regular-24 %281%291.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\minus-regular-24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pngegg.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\shopping-cart %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\user-circle-solid-24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\user_icon-icons.com_66546.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\value %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\value.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\window-regular-24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\windows-regular-24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\x-regular-24 %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\x-regular-24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Imagen\80-809192_m.jpg" />
+    <Content Include="images\80-809192_m.jpg" />
+    <None Include="images\user-circle-solid-24.png" />
+    <None Include="images\klipartz.com.png" />
+    <None Include="images\icono-cliente.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Controles\TextBox.resx">
+      <DependentUpon>TextBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Editar_Perfil.resx">
+      <DependentUpon>Editar_Perfil.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormClientes.resx">
+      <DependentUpon>FormClientes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormCompras.resx">
+      <DependentUpon>FormCompras.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormDetalleCompras.resx">
+      <DependentUpon>FormDetalleCompras.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormDetallesVenta.resx">
+      <DependentUpon>FormDetallesVenta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormProductos.resx">
+      <DependentUpon>FormProductos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormProveedores.resx">
+      <DependentUpon>FormProveedores.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormReporteVentas.resx">
+      <DependentUpon>FormReporteVentas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Formulario.resx">
+      <DependentUpon>Formulario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormVentas.resx">
+      <DependentUpon>FormVentas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\HistorialProveedor.resx">
+      <DependentUpon>HistorialProveedor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ListaDeClientes.resx">
+      <DependentUpon>ListaDeClientes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ListaDeProductos.resx">
+      <DependentUpon>ListaDeProductos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ListaDeProveedor.resx">
+      <DependentUpon>ListaDeProveedor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ListaProductosCompra.resx">
+      <DependentUpon>ListaProductosCompra.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Log in.resx">
+      <DependentUpon>Log in.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Pagos.resx">
+      <DependentUpon>Pagos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\RegistrosClientes.resx">
+      <DependentUpon>RegistrosClientes.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

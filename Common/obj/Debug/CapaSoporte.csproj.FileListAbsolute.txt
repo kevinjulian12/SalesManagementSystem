@@ -16,3 +16,9 @@ D:\RepositorioAzureDevOps\WindowsForms-Login-ServicioDeVentas\Common\obj\Debug\C
 D:\RepositorioAzureDevOps\WindowsForms-Login-ServicioDeVentas\Common\obj\Debug\CapaSoporte.csproj.CoreCompileInputs.cache
 D:\RepositorioAzureDevOps\WindowsForms-Login-ServicioDeVentas\Common\obj\Debug\Common.dll
 D:\RepositorioAzureDevOps\WindowsForms-Login-ServicioDeVentas\Common\obj\Debug\Common.pdb
+D:\AzureRemote\Common\bin\Debug\Common.dll
+D:\AzureRemote\Common\bin\Debug\Common.pdb
+D:\AzureRemote\Common\obj\Debug\CapaSoporte.csproj.AssemblyReference.cache
+D:\AzureRemote\Common\obj\Debug\CapaSoporte.csproj.CoreCompileInputs.cache
+D:\AzureRemote\Common\obj\Debug\Common.dll
+D:\AzureRemote\Common\obj\Debug\Common.pdb

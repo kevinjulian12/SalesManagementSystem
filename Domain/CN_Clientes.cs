@@ -53,9 +53,7 @@ namespace Domain
 
         public DataTable MostrarClientes()
         {
-            DataTable tabla = new DataTable();
-            tabla = objetoCD.Read();
-            return tabla;
+            return objetoCD.Read(); ;
         }
 
         public void InsertarCliente()

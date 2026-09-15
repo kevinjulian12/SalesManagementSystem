@@ -41,8 +41,12 @@ namespace DataAccess
         {
             comando.Connection = conexion.AbrirConexion();
             string total1 = total.ToString().Replace(',', '.');
-            comando.CommandText = "insert into Compras values (" + idProveedor + ",'" + fecha.ToString("dd/MM/yyyy") + "'," + total1 + "); SELECT SCOPE_IDENTITY();";
-            comando.CommandType = CommandType.Text;
+             
+            comando.CommandText = "InsertaCompra";
+            comando.CommandType = CommandType.StoredProcedure;
+            comando.Parameters.AddWithValue("@idpro", idProveedor);
+            comando.Parameters.AddWithValue("@fecha", fecha);
+            comando.Parameters.AddWithValue("@total", total1);
             object IdProveedor;
             IdProveedor = comando.ExecuteScalar();
             comando.Parameters.Clear();

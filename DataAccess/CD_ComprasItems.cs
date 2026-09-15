@@ -18,7 +18,7 @@ namespace DataAccess
         public DataTable MostrarDetallesCompras(int IdCompra)
         {
             comando.Connection = conexion.AbrirConexion();
-            comando.CommandText = "select Nombre,Marca,Descripcion,PrecioCompra,PrecioVenta,Cantidad,SubTotal from ComprasItems join productos on IDProducto=productos.ID where IDCompra= " + IdCompra;
+            comando.CommandText = "select Producto,Marca,Descripcion,PrecioCompra,PrecioVenta,Cantidad,SubTotal from ComprasItems join productos on IDProducto=productos.ID where IDCompra= " + IdCompra;
             comando.CommandType = CommandType.Text;
             leer = comando.ExecuteReader();
             tabla.Load(leer);

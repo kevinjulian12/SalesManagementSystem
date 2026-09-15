@@ -18,8 +18,8 @@ namespace Beta
             InitializeComponent();
         }
         public int id;
-        CN_Compras compras = new CN_Compras();
-        CN_ComprasItem ComprasItem = new CN_ComprasItem();
+        CoreCompras compras = new CoreCompras();
+        CoreComprasItem ComprasItem = new CoreComprasItem();
 
 
         private void HistorialDeComprasClientes_Load(object sender, EventArgs e)
@@ -29,7 +29,7 @@ namespace Beta
 
         public void mostrar()
         {
-            CN_Compras _Compras = new CN_Compras();
+            CoreCompras _Compras = new CoreCompras();
             dataGridView1.DataSource = _Compras.MostraHistComp(id);
             dataGridView1.Columns[0].Visible = false;
             dataGridView1.Columns[1].Visible = false;

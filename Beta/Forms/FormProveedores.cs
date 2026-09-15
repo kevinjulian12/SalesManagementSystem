@@ -1,4 +1,6 @@
-﻿using Domain;
+﻿using Beta.Domain.Core;
+using Beta.Domain.Entity;
+using Domain;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,7 +15,7 @@ namespace Beta
 {
     public partial class FormProveedores : Form
     {
-        CN_Proveedor objetoCN = new CN_Proveedor();
+        CoreProveedor objetoCN = new CoreProveedor();
         private string idProveedor = null;
         private string id;
         private bool Editar = false;
@@ -32,8 +34,8 @@ namespace Beta
         }
         private void MostrarProveedor()
         {
-            CN_Proveedor objeto = new CN_Proveedor();
-            dataGridView1.DataSource = objeto.MostrarProv();
+            CoreProveedor objeto = new CoreProveedor();
+            dataGridView1.DataSource = objeto.Read();
             dataGridView1.Columns.GetFirstColumn(0).Visible = false;
         }
         private void btnGuardar_Click(object sender, EventArgs e)
@@ -43,20 +45,15 @@ namespace Beta
             {
                 try
                 {
-                    if (txtDireccion.Texts.Length < 3 ||txtEmail.Texts.Length < 3 || txtnombre.Texts.Length < 3 || txtRazonSocial.Texts.Length < 3 || txtTelefono.Texts.Length < 6 || txtReferencia.Texts.Length < 3)
-                    {
-                        MessageBox.Show("Complete todos los campos, deben tener como minimo 3 caracter y telefono minimo de 6 caracter");
-                    }
-                    else
-                    {
-                        objetoCN.InsertarPRov(txtnombre.Texts, txtRazonSocial.Texts, txtDireccion.Texts, txtTelefono.Texts, txtReferencia.Texts, txtEmail.Texts);
+                    
+                      //  objetoCN.Insert(objetoCN.);
                         MessageBox.Show("se inserto correctamente");
                         MostrarProveedor();
                         limpiarForm();
                         textBox1.Enabled = false;
                         textBox1.Clear();
                         label6.Visible = true;
-                    }
+                    
                 }
                 catch (Exception ex)
                 {
@@ -74,7 +71,7 @@ namespace Beta
                     }
                     else
                     {
-                        objetoCN.EditarProv(id, txtnombre.Texts, txtRazonSocial.Texts, txtDireccion.Texts, txtTelefono.Texts, txtReferencia.Texts, txtEmail.Texts);
+                   //     objetoCN.EditarProv(id, txtnombre.Texts, txtRazonSocial.Texts, txtDireccion.Texts, txtTelefono.Texts, txtReferencia.Texts, txtEmail.Texts);
                         MessageBox.Show("se edito correctamente");
                         MostrarProveedor();
                         limpiarForm();
@@ -135,7 +132,7 @@ namespace Beta
             if (dataGridView1.SelectedRows.Count > 0)
             {
                 idProveedor = dataGridView1.CurrentRow.Cells["ID"].Value.ToString();
-                objetoCN.EliminarPRov(idProveedor);
+              //  objetoCN.Delete(idProveedor);
                 MessageBox.Show("Eliminado correctamente");
                 MostrarProveedor();
                 btnEliminar.Enabled = false;

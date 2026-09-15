@@ -15,7 +15,7 @@ namespace Beta
 
         public void MostrarClientes()
         {
-            CN_Clientes objeto = new CN_Clientes();
+            CoreClientes objeto = new CoreClientes();
             dataGridView1.DataSource = objeto.MostrarClientes();
             dataGridView1.Columns.GetFirstColumn(0).Visible = false;
         }

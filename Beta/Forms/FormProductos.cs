@@ -14,7 +14,7 @@ namespace Beta
 {
     public partial class FormProductos : Form
     {
-        CN_Productos objetoCN = new CN_Productos();
+        CoreProductos objetoCN = new CoreProductos();
         private string idProducto = null;
         private bool Editar = false;
         private string id;
@@ -36,7 +36,7 @@ namespace Beta
 
         private void MostrarProductos()
         {
-            CN_Productos objeto = new CN_Productos();
+            CoreProductos objeto = new CoreProductos();
             dataGridView1.DataSource = objeto.MostrarProductos();
             dataGridView1.Columns.GetFirstColumn(0).Visible = false;
         }

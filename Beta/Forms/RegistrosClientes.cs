@@ -14,27 +14,27 @@ namespace Beta
     public partial class RegistrosClientes : Form
     {
        
-        private CN_Ventas ventas;
+        private CoreVentas ventas;
 
-        public RegistrosClientes(CN_Ventas Ventas)
+        public RegistrosClientes(CoreVentas Ventas)
         {
             this.ventas = Ventas;
             InitializeComponent();
         }
 
-        private CN_VentasItem VentasItem = new CN_VentasItem();
+        private CoreVentasItem VentasItem = new CoreVentasItem();
 
         private void HistorialDeComprasClientes_Load(object sender, EventArgs e)
         {
             // TODO: esta línea de código carga datos en la tabla 'bETADataSet.Clientes' Puede moverla o quitarla según sea necesario.
-            this.clientesTableAdapter.Fill(this.bETADataSet.Clientes);
+        //    this.clientesTableAdapter.Fill(this.bETADataSet.Clientes);
             mostrar();
         }
 
         public void mostrar()
         {
             var IdCliente = ventas.IDCliente;
-            CN_Ventas CN_Ventas = new CN_Ventas();
+            CoreVentas CN_Ventas = new CoreVentas();
             CN_Ventas.IDCliente = IdCliente;
             dataGridView1.DataSource = CN_Ventas.MostraHistVent();
             dataGridView1.Columns[0].Visible = false;

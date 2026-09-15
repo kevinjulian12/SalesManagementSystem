@@ -1,4 +1,4 @@
-﻿using Common.Cache;
+﻿using Beta.Aplicacion.DTO;
 using System;
 using System.Drawing;
 using System.Runtime.InteropServices;
@@ -259,7 +259,7 @@ namespace Beta
 
         public void LoadUserData()
         {
-            CN_Productos productos = new CN_Productos();
+            CoreProductos productos = new CoreProductos();
             int FaltaStock = 0;
             dropdownMenu1.Items.Clear();
             foreach (DataRow item in productos.NotificacionStock().Rows)
@@ -285,7 +285,7 @@ namespace Beta
 
         private void privilegio()
         {
-            if(UsuarioDTO.Position != "Administrator")
+            if(UsuarioDTO.Position != "Administrador")
             {
                 btnProductos.Enabled = false;
                 btnReportes.Enabled = false;
